@@ -20,7 +20,7 @@
   },
   "scripts": {
     "test": "deno test --coverage --unstable src/",
-    "build": "rm -rf .build dist && cp -R src .build && deno run --allow-read --allow-write --unstable ./scripts/build-lib.ts && tsc && rm -rf .build",
+    "build": "rm -rf .build dist && cp -R src .build && deno run --allow-read --allow-write --unstable ./scripts/replace-ts-extension.ts && tsc && rm -rf .build",
     "lint": "deno fmt --check src/"
   },
   "keywords": [
