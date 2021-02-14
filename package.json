@@ -23,6 +23,11 @@
     "build": "rm -rf .build dist && cp -R src .build && deno run --allow-read --allow-write --unstable ./scripts/replace-ts-extension.ts && tsc && rm -rf .build",
     "lint": "deno fmt --check src/"
   },
+  "homepage": "https://github.com/preventdefault/backoff#readme",
+  "repository": {
+    "url": "https://github.com/preventdefault/backoff.git",
+    "type": "git"
+  },
   "keywords": [
     "backoff",
     "exponential",
@@ -35,7 +40,7 @@
     "name": "Mario Bartlack",
     "url": "https://github.com/preventdefault"
   },
-  "license": "MIT",
+  "license": "UNLICENSED",
   "devDependencies": {
     "typescript": "^4.1.5"
   },
