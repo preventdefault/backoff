@@ -1,0 +1,46 @@
+{
+  "name": "@preventdefault/backoff",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "files": [
+    "dist",
+    "README.md",
+    "package.json"
+  ],
+  "exports": {
+    ".": "./dist/index.js",
+    "./backoff": "./dist/backoff.js",
+    "./strategies/*": "./dist/strategies/*.js",
+    "./random-between": "./dist/random-between.js",
+    "./wait": "./dist/wait.js",
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "test": "deno test --coverage --unstable src/",
+    "build": "rm -rf .build dist && cp -R src .build && deno run --allow-read --allow-write --unstable ./scripts/build-lib.ts && tsc && rm -rf .build",
+    "lint": "deno fmt --check src/"
+  },
+  "keywords": [
+    "backoff",
+    "exponential",
+    "linear",
+    "circuit-breaker",
+    "retry",
+    "resilient"
+  ],
+  "author": {
+    "name": "Mario Bartlack",
+    "url": "https://github.com/preventdefault"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^4.1.5"
+  },
+  "dependencies": {},
+  "engines": {
+    "node": ">=0.12.20"
+  }
+}
