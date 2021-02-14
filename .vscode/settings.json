@@ -1,6 +1,4 @@
 {
-  "typescript.tsdk": "node_modules/typescript/lib",
-  "editor.formatOnSave": true,
   "deno.enable": true,
   "deno.unstable": true,
   "deno.lint": true,
