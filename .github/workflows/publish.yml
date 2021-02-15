@@ -22,6 +22,10 @@ jobs:
           path: "**/node_modules"
           key: ${{ runner.os }}-modules-${{ hashFiles('**/package-json.lock') }}
 
+      - name: Install deno
+        run: |
+          curl -fsSL https://deno.land/x/install/install.sh | sh
+
       - name: Install dependencies
         run: npm i
 
@@ -31,5 +35,5 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Unit Tests
+      - name: Unit tests
         run: npm test
