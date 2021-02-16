@@ -60,6 +60,10 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
 
+      - uses: denolib/setup-deno@v2
+        with:
+          deno-version: v1.x
+
       - name: Install dependencies
         run: npm i
 
