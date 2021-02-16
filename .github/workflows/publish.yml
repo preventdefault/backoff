@@ -40,3 +40,6 @@ jobs:
 
       - name: Integration test deno
         run: npm run test:integration:deno
+
+      - name: Integration test node
+        run: npm run test:integration:node
