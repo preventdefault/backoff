@@ -60,5 +60,11 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
 
+      - name: Install dependencies
+        run: npm i
+
+      - name: Build
+        run: npm run build
+
       - name: Integration test node version ${{ matrix.node }}
         run: npm run test:integration:node
