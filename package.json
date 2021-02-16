@@ -21,7 +21,8 @@
   "scripts": {
     "test": "deno test --coverage --unstable src/",
     "build": "rm -rf .build dist && cp -R src .build && deno run --allow-read --allow-write --unstable ./scripts/replace-ts-extension.ts && tsc && rm -rf .build",
-    "lint": "deno fmt --check src/"
+    "lint": "deno fmt --check src/",
+    "test:integration:deno": "deno run integration/backoff.deno.ts"
   },
   "homepage": "https://github.com/preventdefault/backoff#readme",
   "repository": {

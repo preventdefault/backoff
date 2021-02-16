@@ -37,3 +37,6 @@ jobs:
 
       - name: Unit tests
         run: npm test
+
+      - name: Integration test deno
+        run: npm run test:integration:deno
