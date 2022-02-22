@@ -1,4 +1,4 @@
-import { assertEquals } from "https://deno.land/std@0.87.0/testing/asserts.ts";
+import { assertEquals } from "https://deno.land/std@0.116.0/testing/asserts.ts";
 import { wait } from "./wait.ts";
 
 Deno.test("wait should wait given milliseconds until the returned promise resolves", async () => {

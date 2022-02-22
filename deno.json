@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "experimentalDecorators": false,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noUncheckedIndexedAccess": true
+  }
+}

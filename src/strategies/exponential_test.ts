@@ -1,5 +1,5 @@
-import { assertEquals } from "https://deno.land/std@0.87.0/testing/asserts.ts";
-import { exponential } from "./exponential.ts";
+import { assertEquals } from "../dev_deps.ts";
+import { exponential } from "./mod.ts";
 
 Deno.test("exponential should resolve at least in 10 milliseconds", async () => {
   const t = Date.now();
@@ -9,6 +9,7 @@ Deno.test("exponential should resolve at least in 10 milliseconds", async () => 
   const delay = await next();
 
   assertEquals(delay >= 10, true);
+  assertEquals(Date.now() - t >= 10, true);
 });
 
 Deno.test("exponential should consider the jitter option", async () => {
@@ -19,6 +20,7 @@ Deno.test("exponential should consider the jitter option", async () => {
   const delay = await next();
 
   assertEquals(delay === 10, true);
+  assertEquals(Date.now() - t >= 10, true);
 });
 
 Deno.test("exponential should consider the maxWait option", async () => {
@@ -31,6 +33,7 @@ Deno.test("exponential should consider the maxWait option", async () => {
   const delay = await next();
 
   assertEquals(delay === 10, true);
+  assertEquals(Date.now() - t >= 10, true);
 });
 
 Deno.test("exponential should consider the waitFactor option", async () => {
@@ -43,6 +46,7 @@ Deno.test("exponential should consider the waitFactor option", async () => {
   const delay = await next();
 
   assertEquals(delay === 200, true);
+  assertEquals(Date.now() - t >= 200, true);
 });
 
 Deno.test("exponential should provide a reset function to restart the iteration", async () => {
@@ -58,4 +62,5 @@ Deno.test("exponential should provide a reset function to restart the iteration"
   const delay = await next();
 
   assertEquals(delay === 10, true);
+  assertEquals(Date.now() - t >= 10, true);
 });

@@ -1,5 +1,5 @@
-import { assertEquals } from "https://deno.land/std@0.87.0/testing/asserts.ts";
-import { randomBetween } from "./random-between.ts";
+import { assertEquals } from "./dev_deps.ts";
+import { randomBetween } from "./random_between.ts";
 
 Deno.test("randomBetween should return a random number between 0 and 1", () => {
   assertEquals(randomBetween() >= 0, true);

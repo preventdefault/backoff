@@ -1,9 +1,9 @@
-import { Strategy } from "./index.ts";
-import { randomBetween } from "../random-between.ts";
+import { Strategy } from "./mod.ts";
+import { randomBetween } from "../random_between.ts";
 import { wait } from "../wait.ts";
 
 export function linear({
-  maxWait = 32 * 1000,
+  maxWait = 32_000,
   waitFactor = 10,
   jitter = true,
 } = {}): Strategy {

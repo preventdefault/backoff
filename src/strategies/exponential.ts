@@ -1,5 +1,5 @@
-import { Strategy } from "./index.ts";
-import { randomBetween } from "../random-between.ts";
+import { Strategy } from "./mod.ts";
+import { randomBetween } from "../random_between.ts";
 import { wait } from "../wait.ts";
 
 export function exponential({

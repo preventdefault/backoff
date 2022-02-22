@@ -1,66 +1,61 @@
-import { Strategy } from "./strategies/index.ts";
+import { exponential, Strategy } from "./strategies/mod.ts";
 
 export type Backoff = {
   start: () => Promise<BackoffResult>;
   stop: () => void;
 };
 
-export type BackoffStep = {
+export type BackoffRetry = {
   retry: number;
-  delay: number;
 };
 
 export type BackoffResult = {
-  retry: number;
+  retries: number;
   success: boolean;
-  maxRetries: number;
-  delay: number | null;
-  stopped: boolean;
 };
 
-export type BackoffPredicate = (step: BackoffStep) => Promise<boolean>;
+export type BackoffPredicate = (retry: BackoffRetry) => Promise<boolean>;
 
 export type BackoffParameters = {
-  predicate: BackoffPredicate;
-  maxRetries: number;
-  strategy: Strategy;
+  maxRetries?: number;
+  strategy?: Strategy;
 };
 
-export function backoff({
-  predicate,
-  maxRetries,
-  strategy,
-}: BackoffParameters): Backoff {
+export function backoff(predicate: BackoffPredicate, {
+  maxRetries = 5,
+  strategy = exponential(),
+}: BackoffParameters = {}): Backoff {
   let stopped = false;
   let isRunning = false;
+
   const { next, reset } = strategy();
-  const list = Array.from(Array(maxRetries).keys()).map((n) => n + 1);
+
+  const retries = Array.from(Array(maxRetries).keys()).map((n) => n + 1);
 
   async function start(): Promise<BackoffResult> {
     if (isRunning) {
-      return { retry: 0, success: false, maxRetries, delay: 0, stopped: false };
+      return { retries: 0, success: false };
     }
 
     isRunning = true;
 
-    for (const retry of list) {
-      const delay = await next();
-      const success = await predicate({ retry, delay }).catch(() => false);
+    for (const retry of retries) {
+      await next();
+
+      const success = await predicate({ retry }).catch(() => false);
 
       if (success === true || stopped) {
         isRunning = false;
-        return { retry, success, maxRetries, delay, stopped };
+
+        return { retries: retry, success };
       }
     }
 
     isRunning = false;
 
     return {
-      retry: maxRetries,
+      retries: maxRetries,
       success: false,
-      maxRetries,
-      delay: null,
-      stopped: false,
     };
   }
 
